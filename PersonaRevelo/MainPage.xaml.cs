@@ -14,7 +14,7 @@ namespace PersonaRevelo
 
         public void OnNewButtonClicked(object sender, EventArgs args)
         {
-            statusMessage.Text = "";
+            statusMessage.Text = " ";
 
             App.KRPersonRepo.AddNewPerson(newPerson.Text);
             statusMessage.Text = App.KRPersonRepo.StatusMessage;
