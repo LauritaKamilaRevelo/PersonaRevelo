@@ -1,4 +1,7 @@
-﻿namespace PersonaRevelo
+﻿using PersonaRevelo.Models;
+using System.Collections.Generic;
+
+namespace PersonaRevelo
 {
     public partial class MainPage : ContentPage
     {
@@ -9,16 +12,20 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        public void OnNewButtonClicked(object sender, EventArgs args)
         {
-            count++;
+            statusMessage.Text = "";
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            App.KRPersonRepo.AddNewPerson(newPerson.Text);
+            statusMessage.Text = App.KRPersonRepo.StatusMessage;
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        public void OnGetButtonClicked(object sender, EventArgs args)
+        {
+            statusMessage.Text = "";
+
+            List<KRPerson> people = App.KRPersonRepo.GetAllPeople();
+            peopleList.ItemsSource = people;
         }
     }
 

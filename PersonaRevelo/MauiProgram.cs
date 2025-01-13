@@ -19,7 +19,6 @@ namespace PersonaRevelo
     		builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
             string dbPath = KRFileAccessHelper.GetLocalFilePath("people.db3");
             builder.Services.AddSingleton<KRPersonRepository>(s => ActivatorUtilities.CreateInstance<KRPersonRepository>(s, dbPath));
             return builder.Build();
